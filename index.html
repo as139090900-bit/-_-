@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>سورپرایز تولد ❤️</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: sans-serif;
+    background: linear-gradient(135deg, #16001f, #3b0a45, #120014);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.box {
+    width: 90%;
+    max-width: 430px;
+    padding: 30px 22px;
+    text-align: center;
+    background: rgba(255,255,255,0.10);
+    border-radius: 25px;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 0 35px rgba(255, 0, 150, 0.25);
+    animation: appear 0.8s ease;
+}
+
+h1 {
+    font-size: 28px;
+    margin-bottom: 15px;
+}
+
+p {
+    line-height: 2;
+    font-size: 17px;
+}
+
+input {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 15px;
+    margin: 15px 0;
+    text-align: center;
+    font-size: 18px;
+    outline: none;
+}
+
+button {
+    width: 100%;
+    padding: 14px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 15px;
+    font-size: 17px;
+    cursor: pointer;
+    background: white;
+    color: #5b075f;
+    font-weight: bold;
+    transition: 0.2s;
+}
+
+button:active {
+    transform: scale(0.94);
+}
+
+.option {
+    background: rgba(255,255,255,0.15);
+    color: white;
+}
+
+.hidden {
+    display: none;
+}
+
+.error {
+    color: #ff9dbd;
+    min-height: 25px;
+}
+
+.heart {
+    position: fixed;
+    bottom: -30px;
+    animation: floatUp 4s linear forwards;
+    pointer-events: none;
+}
+
+.confetti {
+    position: fixed;
+    top: -20px;
+    animation: fall 3s linear forwards;
+    pointer-events: none;
+}
+
+@keyframes appear {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes floatUp {
+    to {
+        transform: translateY(-110vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(110vh) rotate(720deg);
+        opacity: 0;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="box">
+
+    <!-- صفحه رمز -->
+    <div id="login">
+        <h1>🎁 یه سورپرایز برای تو...</h1>
+
+        <p>
+            قبل از اینکه سورپرایزت رو ببینی،
+            باید رمز مخصوصتو وارد کنی 👀❤️
+        </p>
+
+        <input
+            id="password"
+            type="password"
+            placeholder="رمز رو وارد کن..."
+        >
+
+        <button onclick="checkPassword()">
+            🔓 ورود به سورپرایز
+        </button>
+
+        <div class="error" id="error"></div>
+    </div>
+
+
+    <!-- صفحه سؤال‌ها -->
+    <div id="quiz" class="hidden">
+
+        <h1 id="questionTitle">❤️ یه سؤال مهم...</h1>
+
+        <p id="question"></p>
+
+        <div id="answers"></div>
+
+    </div>
+
+
+    <!-- صفحه نهایی -->
+    <div id="final" class="hidden">
+
+        <h1>🎂 تولدت مبارک ❤️</h1>
+
+        <p>
+            شاید امروز نتونم کنارت باشم
+            و از نزدیک تولدت رو تبریک بگم،
+            ولی دلم می‌خواست یه کاری کنم
+            که حتی از این فاصله هم
+            یه لبخند روی صورتت بیاد. ❤️
+        </p>
+
+        <p>
+            این سؤال‌ها فقط یه بهونه بودن...
+            هدیه‌ی واقعی من اینه که بدونی
+            بودنت برای من ارزشمنده. 🫶
+        </p>
+
+        <p>
+            امیدوارم سال جدید زندگیت
+            پر از اتفاق‌های خوب،
+            خنده‌های واقعی و لحظه‌های قشنگ باشه.
+        </p>
+
+        <h2>
+            تولدت مبارک عزیزم 🎂❤️
+        </h2>
+
+        <button onclick="celebrate()">
+            🎉 دوستش داشتم!
+        </button>
+
+    </div>
+
+</div>
+
+
+<script>
+
+const PASSWORD = "1234";
+
+let currentQuestion = 0;
+
+const questions = [
+
+{
+    text: "هنوزم منو دوست داری؟ 🥹❤️",
+    answers: [
+        "آره، خیلی زیاد ❤️",
+        "معلومه که آره 😌",
+        "نه 😐"
+    ]
+},
+
+{
+    text: "وقتی دلت برام تنگ میشه، اولین کاری که می‌کنی چیه؟ 🥺",
+    answers: [
+        "بهت پیام میدم 💬",
+        "عکس‌هامونو نگاه می‌کنم 📸",
+        "می‌رم یه گوشه دلم برات تنگ بشه 😂",
+        "همه‌شون ❤️"
+    ]
+},
+
+{
+    text: "اگه همین الان می‌تونستی منو ببینی، اولین چیزی که بهم می‌گفتی چی بود؟ 👀",
+    answers: [
+        "دلم برات تنگ شده ❤️",
+        "بالاخره دیدمت 🥹",
+        "بیا بریم یه جایی 😌",
+        "خودت حدس بزن 😏"
+    ]
+},
+
+{
+    text: "فاصله‌مون اذیتت می‌کنه؟ 🥺",
+    answers: [
+        "آره 🥺",
+        "خیلی",
+        "ولی ارزشش رو داره ❤️",
+        "فاصله مهم نیست، تو مهمی 🫶"
+    ]
+},
+
+{
+    text: "امروز تولدته! حدس می‌زنی هدیه‌ات چیه؟ 👀🎁",
+    answers: [
+        "یه چیز معمولی 😐",
+        "یه سورپرایز خفن 😎",
+        "یه چیز از طرف تو ❤️",
+        "نمی‌دونم، بگو دیگه 😂"
+    ]
+}
+
+];
+
+
+function checkPassword() {
+
+    const password =
+        document.getElementById("password").value;
+
+    const error =
+        document.getElementById("error");
+
+    if (password === PASSWORD) {
+
+        document.getElementById("login")
+            .classList.add("hidden");
+
+        document.getElementById("quiz")
+            .classList.remove("hidden");
+
+        createHearts();
+
+        showQuestion();
+
+    } else {
+
+        error.innerText =
+            "❌ نه نه! این رمز نیست 😂❤️";
+
+        document.getElementById("password").value = "";
+
+    }
+}
+
+
+function showQuestion() {
+
+    const q = questions[currentQuestion];
+
+    document.getElementById("question").innerText =
+        q.text;
+
+    const answers =
+        document.getElementById("answers");
+
+    answers.innerHTML = "";
+
+    q.answers.forEach(answer => {
+
+        const button =
+            document.createElement("button");
+
+        button.innerText = answer;
+
+        button.className = "option";
+
+        button.onclick = () => selectAnswer(answer);
+
+        answers.appendChild(button);
+
+    });
+
+}
+
+
+function selectAnswer(answer) {
+
+    // گزینه «نه» سؤال اول
+    if (
+        currentQuestion === 0 &&
+        answer === "نه 😐"
+    ) {
+
+        alert("😳 این گزینه اشتباهی اینجاست! دوباره انتخاب کن 😂❤️");
+
+        return;
+    }
+
+    createHearts();
+
+    currentQuestion++;
+
+    if (currentQuestion < questions.length) {
+
+        setTimeout(showQuestion, 400);
+
+    } else {
+
+        document.getElementById("quiz")
+            .classList.add("hidden");
+
+        document.getElementById("final")
+            .classList.remove("hidden");
+
+        celebrate();
+
+    }
+}
+
+
+function createHearts() {
+
+    for (let i = 0; i < 8; i++) {
+
+        const heart =
+            document.createElement("div");
+
+        heart.className = "heart";
+
+        heart.innerText =
+            ["❤️","💗","💖","💕"][Math.floor(Math.random()*4)];
+
+        heart.style.left =
+            Math.random() * 100 + "vw";
+
+        heart.style.fontSize =
+            (18 + Math.random()*25) + "px";
+
+        document.body.appendChild(heart);
+
+        setTimeout(() => heart.remove(), 4000);
+    }
+}
+
+
+function celebrate() {
+
+    for (let i = 0; i < 50; i++) {
+
+        const piece =
+            document.createElement("div");
+
+        piece.className = "confetti";
+
+        piece.innerText =
+            ["🎉","✨","❤️","🎊","💕"]
+            [Math.floor(Math.random()*5)];
+
+        piece.style.left =
+            Math.random() * 100 + "vw";
+
+        piece.style.fontSize =
+            (15 + Math.random()*25) + "px";
+
+        piece.style.animationDuration =
+            (2 + Math.random()*3) + "s";
+
+        document.body.appendChild(piece);
+
+        setTimeout(() => piece.remove(), 5000);
+    }
+}
+
+</script>
+
+</body>
+  </html>
