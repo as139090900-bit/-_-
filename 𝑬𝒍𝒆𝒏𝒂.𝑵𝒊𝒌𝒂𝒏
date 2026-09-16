@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>برای النا ❤️</title>
+
+<style>
+
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    min-height:100vh;
+    font-family:Tahoma,sans-serif;
+    color:white;
+    overflow:hidden;
+
+    background:
+    radial-gradient(circle at center,#641852,#21091e 50%,#080208);
+
+    transition:1s;
+}
+
+body.bright{
+    background:
+    radial-gradient(circle at center,#ff8bc4,#7b1f68 50%,#180619);
+}
+
+.container{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+}
+
+.card{
+    width:100%;
+    max-width:430px;
+    text-align:center;
+    padding:30px 20px;
+    border-radius:30px;
+
+    background:rgba(255,255,255,.09);
+
+    backdrop-filter:blur(15px);
+
+    box-shadow:0 20px 70px rgba(0,0,0,.5);
+}
+
+h1{
+    margin:0 0 10px;
+}
+
+.subtitle{
+    opacity:.8;
+    line-height:2;
+}
+
+
+/* قلب اصلی */
+
+.main-circle{
+    width:145px;
+    height:145px;
+
+    margin:30px auto;
+
+    border-radius:50%;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:62px;
+
+    cursor:pointer;
+
+    background:
+    linear-gradient(145deg,#ff4d91,#8b1764);
+
+    box-shadow:
+    0 0 25px #ff4d91,
+    0 0 70px rgba(255,77,145,.5);
+
+    animation:pulse 2s infinite;
+}
+
+@keyframes pulse{
+
+    0%,100%{
+        transform:scale(1);
+    }
+
+    50%{
+        transform:scale(1.07);
+    }
+
+}
+
+
+/* پیام بعد از قلب */
+
+.thanks{
+    display:none;
+
+    margin:15px 0;
+
+    line-height:2;
+
+    animation:appear .6s;
+}
+
+.thanks.show{
+    display:block;
+}
+
+
+/* پنل */
+
+.panel{
+    display:none;
+
+    margin-top:20px;
+
+    padding:20px;
+
+    border-radius:25px;
+
+    background:rgba(0,0,0,.3);
+}
+
+.panel.show{
+    display:block;
+
+    animation:appear .5s;
+}
+
+@keyframes appear{
+
+    from{
+        opacity:0;
+        transform:translateY(15px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+
+}
+
+
+/* گزینه ها */
+
+.item{
+    margin:10px 0;
+
+    padding:15px;
+
+    border-radius:18px;
+
+    background:rgba(255,255,255,.08);
+
+    cursor:pointer;
+}
+
+
+/* پیام ها */
+
+.message{
+    display:none;
+
+    margin-top:15px;
+
+    padding:15px;
+
+    border-radius:18px;
+
+    background:rgba(255,77,145,.18);
+
+    line-height:2;
+}
+
+.message.show{
+    display:block;
+}
+
+
+/* دکمه ها */
+
+.buttons{
+    display:flex;
+
+    gap:10px;
+
+    justify-content:center;
+
+    margin-top:15px;
+}
+
+button{
+    border:0;
+
+    padding:12px 25px;
+
+    border-radius:30px;
+
+    color:white;
+
+    font-size:16px;
+
+    cursor:pointer;
+}
+
+.yes{
+    background:#e93679;
+}
+
+.no{
+    background:#555;
+}
+
+
+/* کادو - ابتدا مخفی */
+
+.gift-hint{
+    display:none;
+
+    position:fixed;
+
+    bottom:75px;
+
+    left:50%;
+
+    transform:translateX(-50%);
+
+    width:90%;
+
+    max-width:330px;
+
+    text-align:center;
+
+    padding:10px;
+
+    font-size:14px;
+
+    line-height:1.8;
+
+    color:white;
+
+    animation:giftHint 1.8s infinite alternate;
+
+    z-index:20;
+}
+
+.gift-hint.show{
+    display:block;
+}
+
+
+/* خود کادو */
+
+.secret{
+    display:none;
+
+    position:fixed;
+
+    bottom:15px;
+
+    left:50%;
+
+    transform:translateX(-50%);
+
+    width:55px;
+
+    height:55px;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:38px;
+
+    cursor:pointer;
+
+    z-index:21;
+
+    animation:giftPulse 1.5s infinite;
+}
+
+.secret.show{
+    display:flex;
+}
+
+@keyframes giftPulse{
+
+    0%,100%{
+        transform:translateX(-50%) scale(1);
+    }
+
+    50%{
+        transform:translateX(-50%) scale(1.15);
+    }
+
+}
+
+@keyframes giftHint{
+
+    from{
+        opacity:.65;
+    }
+
+    to{
+        opacity:1;
+    }
+
+}
+
+
+/* پیام مخفی */
+
+.secret-message{
+
+    display:none;
+
+    position:fixed;
+
+    inset:0;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:rgba(0,0,0,.75);
+
+    z-index:30;
+}
+
+.secret-message.show{
+    display:flex;
+}
+
+.secret-box{
+
+    width:85%;
+
+    max-width:350px;
+
+    padding:30px;
+
+    text-align:center;
+
+    border-radius:25px;
+
+    background:
+    linear-gradient(145deg,#7d1c60,#27091f);
+
+    box-shadow:
+    0 0 50px rgba(255,100,180,.5);
+
+    animation:appear .5s;
+}
+
+
+/* پایان */
+
+.final{
+
+    display:none;
+
+    margin-top:20px;
+
+    padding:20px;
+
+    border-radius:22px;
+
+    background:rgba(255,255,255,.1);
+
+    line-height:2;
+
+    animation:appear .7s;
+}
+
+.final.show{
+    display:block;
+}
+
+
+/* قلب های شناور */
+
+.heart{
+
+    position:fixed;
+
+    bottom:-40px;
+
+    pointer-events:none;
+
+    font-size:22px;
+
+    animation:
+    float 5s linear forwards;
+
+    z-index:10;
+}
+
+@keyframes float{
+
+    to{
+
+        transform:
+        translateY(-110vh)
+        rotate(360deg);
+
+        opacity:0;
+    }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+<div class="card">
+
+
+<h1>
+برای النا ❤️
+</h1>
+
+
+<div class="subtitle">
+
+یه چیز کوچیک برات آماده کردم...
+
+<br>
+
+روی قلب بزن ✨
+
+</div>
+
+
+<!-- قلب -->
+
+<div
+class="main-circle"
+onclick="openHeart()"
+>
+
+❤️
+
+</div>
+
+
+<!-- پیام بعد از قلب -->
+
+<div
+class="thanks"
+id="thanks"
+>
+
+💗 ممنون که همراه منی 💗
+
+<br>
+
+حالا یه چیز دیگه هم منتظرته...
+
+</div>
+
+
+<!-- پنل اصلی -->
+
+<div
+class="panel"
+id="panel"
+>
+
+<h2>
+چیزهایی که برای تو آماده شده 💕
+</h2>
+
+
+<div
+class="item"
+onclick="showMessage('letter')"
+>
+
+💌 یه پیام برای تو
+
+</div>
+
+
+<div
+class="item"
+onclick="showMessage('question')"
+>
+
+❤️ یه سؤال مهم
+
+</div>
+
+
+<!-- نامه -->
+
+<div
+class="message"
+id="letter"
+>
+
+بعضی آدم‌ها فقط وارد زندگی آدم نمی‌شن...
+
+<br>
+
+یه گوشه از قلب آدم رو برای همیشه قشنگ می‌کنن. ❤️
+
+</div>
+
+
+<!-- سؤال -->
+
+<div
+class="message"
+id="question"
+>
+
+یه سؤال کوچولو دارم...
+
+<br><br>
+
+می‌خوای ادامه بدیم؟ ❤️
+
+
+<div class="buttons">
+
+<button
+class="yes"
+onclick="sayYes()"
+>
+
+بله ❤️
+
+</button>
+
+
+<button
+class="no"
+onclick="sayNo()"
+>
+
+نه
+
+</button>
+
+</div>
+
+
+<div id="result"></div>
+
+</div>
+
+
+<!-- پایان قبلی -->
+
+<div
+class="final"
+id="final"
+>
+
+🌹 رسیدیم به آخرش...
+
+<br><br>
+
+ممنون که تا اینجا همراه من اومدی. ❤️
+
+<br>
+
+بعضی لحظه‌ها شاید کوتاه باشن،
+ولی می‌تونن برای همیشه قشنگ بمونن. ✨
+
+<br><br>
+
+💌 از طرف نیکان:
+
+<br><br>
+
+«النا، شاید نتونم همیشه قشنگ‌ترین جمله‌ها رو پیدا کنم،
+ولی یه چیز رو خوب می‌دونم؛
+حضورت برای من یکی از قشنگ‌ترین اتفاق‌های زندگیه. ❤️»
+
+<br><br>
+
+😳 عه؟!
+
+<br>
+
+مگه ما تازه شروع نکردیم؟ 😂❤️
+
+<br><br>
+
+خب... ادامه بدیم؟ 😄
+
+
+<div class="buttons">
+
+<button
+class="yes"
+onclick="finalYes()"
+>
+
+آره ❤️
+
+</button>
+
+
+<button
+class="no"
+onclick="finalNo()"
+>
+
+نه 😄
+
+</button>
+
+</div>
+
+
+<div id="finalResult"></div>
+
+</div>
+
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- راهنمای کادو -->
+
+<div class="gift-hint">
+
+یه کادویی پایین صفحه برات دارم 🎁
+
+<br>
+
+روش بزن تا بازش کنی ❤️
+
+</div>
+
+
+<!-- کادو -->
+
+<div
+class="secret"
+onclick="openSecret()"
+>
+
+🎁
+
+</div>
+
+
+<!-- پیام مخفی -->
+
+<div
+class="secret-message"
+id="secretMessage"
+>
+
+<div class="secret-box">
+
+<h2>
+🎁 پیدام کردی!
+</h2>
+
+
+<p>
+
+قرار نبود اینو ببینی 😄
+
+<br><br>
+
+ولی حالا که پیداش کردی...
+
+<br>
+
+این پیام مخصوص خودته ❤️
+
+</p>
+
+
+<button
+class="yes"
+onclick="closeSecret()"
+>
+
+باشه ❤️
+
+</button>
+
+</div>
+
+</div>
+
+
+<script>
+
+
+let opened=false;
+
+
+/* قلب */
+
+function openHeart(){
+
+    if(opened) return;
+
+    opened=true;
+
+
+    document.body
+    .classList
+    .add("bright");
+
+
+    document
+    .getElementById("panel")
+    .classList
+    .add("show");
+
+
+    document
+    .getElementById("thanks")
+    .classList
+    .add("show");
+
+
+    /* ظاهر شدن کادو */
+
+    document
+    .querySelector(".gift-hint")
+    .classList
+    .add("show");
+
+
+    document
+    .querySelector(".secret")
+    .classList
+    .add("show");
+
+
+    createHearts(35);
+
+}
+
+
+/* نمایش پیام */
+
+function showMessage(id){
+
+    document
+    .querySelectorAll(".message")
+    .forEach(
+        x => x.classList.remove("show")
+    );
+
+
+    document
+    .getElementById(id)
+    .classList
+    .add("show");
+
+}
+
+
+/* بله */
+
+function sayYes(){
+
+    document
+    .getElementById("result")
+    .innerHTML=
+    "🥰 پس بریم برای ادامه‌ی داستان... ❤️";
+
+
+    createHearts(20);
+
+
+    setTimeout(()=>{
+
+        document
+        .getElementById("final")
+        .classList
+        .add("show");
+
+    },1200);
+
+}
+
+
+/* نه */
+
+function sayNo(){
+
+    document
+    .getElementById("result")
+    .innerHTML=
+    "❌ همچین گزینه‌ای وجود نداره 😄❤️";
+
+
+    createHearts(8);
+
+}
+
+
+/* جواب آره در آخر */
+
+function finalYes(){
+
+    document
+    .getElementById("finalResult")
+    .innerHTML=
+    "🥰 می‌دونستم! پس تازه اول داستانه ❤️✨";
+
+
+    createHearts(25);
+
+}
+
+
+/* جواب نه در آخر */
+
+function finalNo(){
+
+    document
+    .getElementById("finalResult")
+    .innerHTML=
+    "😂 نه بابا، شوخی نکن! 😄❤️";
+
+
+    createHearts(10);
+
+}
+
+
+/* باز کردن کادو */
+
+function openSecret(){
+
+    document
+    .getElementById("secretMessage")
+    .classList
+    .add("show");
+
+
+    createHearts(18);
+
+}
+
+
+/* بستن کادو */
+
+function closeSecret(){
+
+    document
+    .getElementById("secretMessage")
+    .classList
+    .remove("show");
+
+}
+
+
+/* قلب های شناور */
+
+function createHearts(count){
+
+    for(
+        let i=0;
+        i<count;
+        i++
+    ){
+
+        const heart=
+        document.createElement("div");
+
+
+        heart.className="heart";
+
+
+        heart.innerHTML=
+        Math.random()>.5
+        ? "❤️"
+        : "💗";
+
+
+        heart.style.left=
+        Math.random()*100+"vw";
+
+
+        heart.style.animationDuration=
+        (3+Math.random()*4)+"s";
+
+
+        document.body
+        .appendChild(heart);
+
+
+        setTimeout(()=>{
+
+            heart.remove();
+
+        },7000);
+
+    }
+
+}
+
+</script>
+
+</body>
+</html>
